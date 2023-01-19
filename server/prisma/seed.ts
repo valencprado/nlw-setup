@@ -66,6 +66,11 @@ async function run() {
           create: [
             { week_day: 0 },
             { week_day: 1 },
+            { week_day: 2 },
+            { week_day: 3 },
+            { week_day: 4 },
+            { week_day: 5 },
+            { week_day: 6 },
           ]
         }
       }
@@ -79,11 +84,12 @@ async function run() {
     prisma.day.create({
       data: {
         /** Monday */
-        date: new Date('2023-01-02T03:00:00.000z'),
+        date: new Date('2023-01-10T03:00:00.000z'),
         dayHabits: {
-          create: {
-            habit_id: firstHabitId,
-          }
+          create: [{habit_id: firstHabitId,},
+                 {habit_id: secondHabitId,},
+                 {habit_id: thirdHabitId,},
+                ]
         }
       }
     }),
@@ -94,11 +100,10 @@ async function run() {
     prisma.day.create({
       data: {
         /** Friday */
-        date: new Date('2023-01-06T03:00:00.000z'),
+        date: new Date('2023-01-11T03:00:00.000z'),
         dayHabits: {
-          create: {
-            habit_id: firstHabitId,
-          }
+          create: [{habit_id: firstHabitId},
+                  { habit_id: thirdHabitId },]
         }
       }
     }),
@@ -109,11 +114,12 @@ async function run() {
     prisma.day.create({
       data: {
         /** Wednesday */
-        date: new Date('2023-01-04T03:00:00.000z'),
+        date: new Date('2023-01-12T03:00:00.000z'),
         dayHabits: {
           create: [
             { habit_id: firstHabitId },
             { habit_id: secondHabitId },
+            { habit_id: thirdHabitId },
           ]
         }
       }
