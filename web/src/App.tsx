@@ -1,6 +1,7 @@
 import './styles/global.css'
 import { Header } from './components/header'
 import { SummaryTable } from './components/summaryTable'
+import './lib/dayjs'
 //import { Habit } from "./components/habit"
 
 export function App() {
@@ -13,7 +14,7 @@ export function App() {
      <SummaryTable/>
    </div>
    </div>
-  )
+   )
 }
 
 
