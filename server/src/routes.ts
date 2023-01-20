@@ -17,7 +17,7 @@ export async function appRoutes(app:FastifyInstance){
         await prisma.habit.create({
             data:{
             title,
-            creaed_at: new Date(),
+            creaed_at: today,
             weekDays:{
                 create: weekDays.map(weekDay =>{
                     return{
@@ -28,14 +28,14 @@ export async function appRoutes(app:FastifyInstance){
         }
         })
     })
-    app.get('/details', async(request) =>{
+    app.get('/day', async(request) =>{
         const getDayParams = z.object(
             {date: z.coerce.date()
             })
             const {date} = getDayParams.parse(request.query)
             const parsedDate = dayjs(date).startOf('day')
             const weekDay = parsedDate.get('day')
-            const possibleHabits = await prisma.habit.findFirst({
+            const possibleHabits = await prisma.habit.findMany({
                 where:{
                     creaed_at:{
                         lte:date,
@@ -47,7 +47,7 @@ export async function appRoutes(app:FastifyInstance){
                     }
                 }
             })
-            const day = await prisma.day.findUnique({
+            const day = await prisma.day.findFirst({
                 where:{
                     date: parsedDate.toDate(),
 
@@ -120,7 +120,7 @@ app.get('/summary', async() =>{
      JOIN habits H 
      on H.id = HWD.habit_id
      WHERE 
-     HWD.week_day = cast(strftime('$w', D.date/1000, 'unixepoch') as int) AND H.creaed_at <= D.date) as amount
+     HWD.week_day = cast(strftime('%w', D.date/1000, 'unixepoch') as int) AND H.creaed_at <= D.date) as amount
      FROM days D
 
     `
