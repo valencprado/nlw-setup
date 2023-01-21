@@ -6,7 +6,7 @@ import { api } from '../lib/axios';
 
 interface HabitsListProps{
     date: Date
-    onCompletedChanged: (completd: number) => void
+    onCompletedChanged: (completed: number) => void
 }
 interface HabitsInfo{
     possibleHabits: Array<{
