@@ -5,7 +5,7 @@ import * as Dialog from '@radix-ui/react-dialog'
 import { NewHabitForm } from "./newHabitForm";
 export function Header(){
     return(<div>
-        <div className='w-full max-w-3xl mx-auto flex items-center justify-between'>
+        <div className='w-full max-w-3xl mx-auto flex items-center justify-between ml-2'>
         <img src={logo} alt='habits'/>
           </div>
         <Dialog.Root>
